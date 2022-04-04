@@ -2,11 +2,11 @@ package hr.tvz.Bilandzija.hardwareapp.controller;
 
 import hr.tvz.Bilandzija.hardwareapp.model.dto.HardwareDTO;
 import hr.tvz.Bilandzija.hardwareapp.service.interfaces.HardwareService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,8 +23,38 @@ public class HardwareController {
         return hardwareService.findAll();
     }
 
-    @GetMapping(params="code")
-    public HardwareDTO getHardwareByCode(@RequestParam final Integer code){
+    @GetMapping("/{code}")
+    public HardwareDTO getHardwareByCode(@PathVariable final Integer code){
         return hardwareService.findByCode(code);
+    }
+
+    @PostMapping
+    public ResponseEntity<HardwareDTO> save(@Valid @RequestBody final HardwareCommand command){
+        return hardwareService.save(command)
+                .map(
+                        hardwareDTO -> ResponseEntity
+                                .status(HttpStatus.CREATED)
+                                .body(hardwareDTO)
+                )
+                .orElseGet(
+                        () -> ResponseEntity
+                                .status(HttpStatus.CONFLICT)
+                                .build()
+                );
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{code}")
+    public void delete(@PathVariable Integer code){
+        hardwareService.deleteByCode(code);
+    }
+
+    @PutMapping("/{code}")
+    public ResponseEntity<HardwareDTO> update(@PathVariable Integer code, @Valid @RequestBody final HardwareCommand updateHardwareCommand){
+        return hardwareService.update(code, updateHardwareCommand)
+                .map(ResponseEntity::ok)
+                .orElseGet(
+                        () -> ResponseEntity.notFound().build()
+                );
     }
 }
