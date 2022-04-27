@@ -7,13 +7,15 @@ import lombok.Data;
 @AllArgsConstructor
 public class HardwareDTO{
     /*Napisati klasu HardwareDTO s fieldovima naziv i cijena.*/
+    private Integer code;
     private String name;
     private Integer price;
 
     @Override
     public String toString(){
         return "HardwareDTO{" +
-                "name=" + name + '\'' +
+                "code=" + code + "\'"+
+                ", name=" + name + '\'' +
                 ", price=" + price + "}";
     }
 }

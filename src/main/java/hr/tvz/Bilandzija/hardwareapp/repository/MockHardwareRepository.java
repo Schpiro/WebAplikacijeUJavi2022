@@ -11,7 +11,10 @@ import java.util.*;
 public class MockHardwareRepository implements HardwareRepository {
     private final Set<Hardware> MOCKED_HARDWARE = new HashSet<>(Arrays.asList(
             new Hardware("Intel i7",1,100, TypeOfHardware.CPU,5),
-            new Hardware("RTX3080",2,200, TypeOfHardware.GPU,2)
+            new Hardware("Intel i5",2,400, TypeOfHardware.CPU,4),
+            new Hardware("Intel i3",3,600, TypeOfHardware.CPU,7),
+            new Hardware("Ryzen 9",4,800, TypeOfHardware.CPU,15),
+            new Hardware("RTX3080",5,1000, TypeOfHardware.GPU,2)
     ));
 
 
@@ -40,7 +43,7 @@ public class MockHardwareRepository implements HardwareRepository {
 
     @Override
     public Optional<Hardware> update(Integer code, Hardware hardware) {
-        if(MOCKED_HARDWARE.removeIf( x -> x.getCode().equals(code) && hardware.getCode().equals(hardware.getCode())))
+        if(MOCKED_HARDWARE.removeIf( x -> x.getCode().equals(code) && hardware.getCode().equals(code)))
         {
             MOCKED_HARDWARE.add(hardware);
             return Optional.of(hardware);

@@ -1,6 +1,7 @@
 package hr.tvz.Bilandzija.hardwareapp.controller;
 
 import hr.tvz.Bilandzija.hardwareapp.model.dto.HardwareDTO;
+import hr.tvz.Bilandzija.hardwareapp.model.enums.TypeOfHardware;
 import hr.tvz.Bilandzija.hardwareapp.service.interfaces.HardwareService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("hardware")
+@CrossOrigin(origins = "http://localhost:4200")
 public class HardwareController {
     private final HardwareService hardwareService;
 
@@ -56,5 +58,10 @@ public class HardwareController {
                 .orElseGet(
                         () -> ResponseEntity.notFound().build()
                 );
+    }
+
+    @GetMapping("/types")
+    public Enum<TypeOfHardware>[] HardwareTypes(){
+        return TypeOfHardware.values();
     }
 }
