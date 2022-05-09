@@ -21,7 +21,7 @@ import java.util.Set;
 @Repository
 public class JdbcHardwareRepository implements HardwareRepository {
     private static final String SELECT_ALL =
-            "Select name, code, price, type_of_hardware, available_stock from hardware";
+            "Select id, name, code, price, type_of_hardware, available_stock from hardware";
 
 
     private final JdbcTemplate jdbc;
@@ -31,7 +31,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
         this.jdbc=jdbc;
         this.inserter = new SimpleJdbcInsert(jdbc)
                 .withTableName("hardware")
-                .usingGeneratedKeyColumns("code");
+                .usingGeneratedKeyColumns("id");
     }
 
 
@@ -90,6 +90,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
 
     private Hardware mapRowToHardware(ResultSet resultSet, int i) throws SQLException {
         return new Hardware(
+                resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getInt("code"),
                 resultSet.getInt("price"),
