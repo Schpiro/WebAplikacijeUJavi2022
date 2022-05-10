@@ -7,9 +7,9 @@ insert into hardware (name, code, price, type, available_stock)
         ('gtx1050', 1231, 354312, 'GPU', 45);
 
 insert into review (title,text,grade,hardware_code)
-    values ('odlicno','ovo je super',5, 1),
-    ('solid','uzeo bi opet',4, 1),
-    ('meh','ovo je lose',1, 2),
-    ('uzas','ovo je strasno lose!',1, 2),
-    ('doodoo','ovo je grozno!',2, 3),
-    ('kriticno','neopisivo!',1, 3);
+    values ('odlicno','ovo je super',5, 123),
+    ('solid','uzeo bi opet',4, 123),
+    ('meh','ovo je lose',1, 1253),
+    ('uzas','ovo je strasno lose!',1, 1253),
+    ('doodoo','ovo je grozno!',2, 1231),
+    ('kriticno','neopisivo!',1, 1231);

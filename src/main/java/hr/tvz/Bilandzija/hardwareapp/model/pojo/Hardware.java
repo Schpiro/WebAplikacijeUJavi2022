@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,17 +16,18 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Hardware {
+public class Hardware implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private Integer code;
     private Integer price;
+    @Enumerated(EnumType.STRING)
     private TypeOfHardware type;
     private Integer availableStock;
 
-    @OneToMany(mappedBy = "hardware")
+    @OneToMany(targetEntity = Review.class, mappedBy = "hardware")
     private List<Review> reviews;
     public Hardware(String name, Integer code, Integer price, TypeOfHardware type, Integer availableStock) {
         this.name = name;

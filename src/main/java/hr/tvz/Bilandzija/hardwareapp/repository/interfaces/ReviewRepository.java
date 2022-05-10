@@ -7,5 +7,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long>{
    List<Review> findAll();
 
-   List<Review> findAllByHardwareId(Integer hardwareCode);
+   List<Review> findAllByHardwareCode(Integer hardwareCode);
 }

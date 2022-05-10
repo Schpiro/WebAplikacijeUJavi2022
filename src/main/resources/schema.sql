@@ -12,6 +12,6 @@ create table if not exists review (
     title varchar(10) not null,
     text nvarchar not null,
     grade number not null,
-    hardware_id number not null,
-    constraint fk_hardware foreign key (hardware_id) references hardware(id)
+    hardware_code number not null,
+    constraint fk_hardware foreign key (hardware_code) references hardware(code)
 );
