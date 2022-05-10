@@ -24,8 +24,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewDTO> findByHardwareCode(Integer code) {
-        return reviewRepository.findAllByHardwareCode(code).stream().map(this::mapReviewToDTO).collect(Collectors.toList());
+    public List<ReviewDTO> findByHardwareId(Integer Id) {
+        return reviewRepository.findAllByHardwareId(Id).stream().map(this::mapReviewToDTO).collect(Collectors.toList());
 
     }
 

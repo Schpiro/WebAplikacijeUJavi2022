@@ -18,11 +18,8 @@ public class Review {
     private String title;
     private String text;
     private Integer grade;
-    @ManyToOne(targetEntity = Hardware.class)
-    @JoinTable(
-            name="hardware",
-            joinColumns = {@JoinColumn(name="id")}
-    )
+    @ManyToOne(targetEntity = Hardware.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "hardwareId")
     private Hardware hardware;
 
     @Override

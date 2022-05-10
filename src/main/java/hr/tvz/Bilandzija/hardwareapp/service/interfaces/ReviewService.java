@@ -9,5 +9,5 @@ import java.util.List;
 public interface ReviewService {
     List<ReviewDTO> findAll();
 
-    List<ReviewDTO> findByHardwareCode(Integer code);
+    List<ReviewDTO> findByHardwareId(Integer Id);
 }
