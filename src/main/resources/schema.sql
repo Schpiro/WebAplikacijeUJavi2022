@@ -3,7 +3,7 @@ create table if not exists hardware (
     name varchar(10) not null,
     code number unique not null,
     price number not null,
-    type varchar(5) not null,
+    type nvarchar not null,
     available_stock number not null
 );
 
