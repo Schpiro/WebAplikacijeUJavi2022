@@ -1,5 +1,6 @@
 package hr.tvz.Bilandzija.hardwareapp.controller;
 
+import hr.tvz.Bilandzija.hardwareapp.command.HardwareCommand;
 import hr.tvz.Bilandzija.hardwareapp.model.dto.HardwareDTO;
 import hr.tvz.Bilandzija.hardwareapp.model.enums.TypeOfHardware;
 import hr.tvz.Bilandzija.hardwareapp.service.interfaces.HardwareService;

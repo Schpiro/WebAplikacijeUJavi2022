@@ -8,13 +8,13 @@ import lombok.Data;
 public class ReviewDTO {
     private String title;
     private String text;
-    private Integer grade;
+    private Integer rating;
 
     @Override
     public String toString(){
         return "ReviewDTO{" +
                 "title=" + title + "\'"+
                 ", text=" + text + '\'' +
-                ", grade=" + grade + "}";
+                ", grade=" + rating + "}";
     }
 }

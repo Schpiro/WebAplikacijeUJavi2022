@@ -1,4 +1,4 @@
-package hr.tvz.Bilandzija.hardwareapp.controller;
+package hr.tvz.Bilandzija.hardwareapp.command;
 import hr.tvz.Bilandzija.hardwareapp.model.enums.TypeOfHardware;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
@@ -20,5 +20,5 @@ public class HardwareCommand {
     private TypeOfHardware type;
 
     @NotNull(message = "Stock must not be empty")
-    private Integer availableStock;
+    private Integer stock;
 }

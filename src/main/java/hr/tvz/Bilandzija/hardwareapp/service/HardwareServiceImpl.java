@@ -1,6 +1,6 @@
 package hr.tvz.Bilandzija.hardwareapp.service;
 
-import hr.tvz.Bilandzija.hardwareapp.controller.HardwareCommand;
+import hr.tvz.Bilandzija.hardwareapp.command.HardwareCommand;
 import hr.tvz.Bilandzija.hardwareapp.model.pojo.Hardware;
 import hr.tvz.Bilandzija.hardwareapp.model.dto.HardwareDTO;
 import hr.tvz.Bilandzija.hardwareapp.repository.interfaces.HardwareRepository;
@@ -49,6 +49,6 @@ public class HardwareServiceImpl implements HardwareService {
     }
 
     private Hardware mapCommandToHardware(final HardwareCommand hardwareCommand) {
-        return new Hardware(hardwareCommand.getName(),hardwareCommand.getCode(),hardwareCommand.getPrice(),hardwareCommand.getType(),hardwareCommand.getAvailableStock());
+        return new Hardware(hardwareCommand.getName(),hardwareCommand.getCode(),hardwareCommand.getPrice(),hardwareCommand.getType(),hardwareCommand.getStock());
     }
 }
