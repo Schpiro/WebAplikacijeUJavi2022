@@ -53,6 +53,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
 
     @Override
     public void delete(Integer code) {
+        jdbc.update("DELETE FROM review WHERE hardware_code = ?", code);
         jdbc.update("DELETE FROM hardware WHERE code = ?", code);
     }
 
