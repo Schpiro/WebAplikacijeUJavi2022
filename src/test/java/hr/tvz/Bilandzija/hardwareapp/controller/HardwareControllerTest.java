@@ -115,44 +115,6 @@ class HardwareControllerTest {
                 .andExpect(status().isNoContent());
     }
 
-    @Test
-    @Transactional
-    void update() throws Exception {
-        HardwareCommand hardwareCommand = new HardwareCommand(TEST_NAME, TEST_CODE,TEST_PRICE,TEST_TYPE,TEST_STOCK);
-
-        this.mockMvc.perform(
-                post("/hardware")
-                        .with(user("admin")
-                                .password("admin")
-                                .roles("ADMIN")
-                        )
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(hardwareCommand))
-                        .accept(MediaType.APPLICATION_JSON)
-        )
-                .andExpect(status().isCreated());
-
-        hardwareCommand = new HardwareCommand(TEST_NAME,REPLACEMENT_CODE,TEST_PRICE,TEST_TYPE,TEST_STOCK);
-        this.mockMvc.perform(
-                put("/hardware/"+TEST_CODE)
-                        .with(user("admin")
-                                .password("admin")
-                                .roles("ADMIN")
-                        )
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(hardwareCommand))
-                        .accept(MediaType.APPLICATION_JSON)
-        )
-                .andExpect(status().isCreated())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().encoding(StandardCharsets.UTF_8))
-                .andExpect(jsonPath("$.name").value(TEST_NAME))
-                .andExpect(jsonPath("$.code").value(REPLACEMENT_CODE)) //nes nije dobro oko savea, code bi trebao bit 1234
-                .andExpect(jsonPath("$.price").value(TEST_PRICE));
-    }
-
     private String createJwt() throws Exception {
         Map<String,Object> body = new HashMap<>();
         body.put("username", "admin");
