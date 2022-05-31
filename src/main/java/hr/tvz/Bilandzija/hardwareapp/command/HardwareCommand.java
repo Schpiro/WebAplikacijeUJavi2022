@@ -1,11 +1,13 @@
 package hr.tvz.Bilandzija.hardwareapp.command;
 import hr.tvz.Bilandzija.hardwareapp.model.enums.TypeOfHardware;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Data
+@AllArgsConstructor
 public class HardwareCommand {
     @NotBlank(message = "Name must not be empty")
     private String name;

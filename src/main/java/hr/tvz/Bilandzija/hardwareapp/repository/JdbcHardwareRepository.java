@@ -60,7 +60,7 @@ public class JdbcHardwareRepository implements HardwareRepository {
     @Override
     public Optional<Hardware> save(Hardware hardware) {
         try {
-            hardware.setCode(saveHardwareDetails(hardware));
+            hardware.setId(saveHardwareDetails(hardware));
             return Optional.of(hardware);
         } catch (DuplicateKeyException e){
             return Optional.empty();
@@ -72,15 +72,15 @@ public class JdbcHardwareRepository implements HardwareRepository {
         int executed = jdbc.update("UPDATE hardware set " +
                         "name = ?, " +
                         "price = ?, " +
-                        "type_of_hardware = ?, " +
+                        "type = ?, " +
                         "available_stock = ? " +
                         "WHERE code = ?",
                 updatedHardware.getName(),
-                updatedHardware.getCode(),
                 updatedHardware.getPrice(),
                 updatedHardware.getType(),
-                updatedHardware.getAvailableStock()
-        );
+                updatedHardware.getAvailableStock(),
+                updatedHardware.getCode()
+                );
 
         if(executed > 0){
             return Optional.of(updatedHardware);

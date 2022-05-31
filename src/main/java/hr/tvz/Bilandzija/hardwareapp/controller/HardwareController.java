@@ -2,10 +2,10 @@ package hr.tvz.Bilandzija.hardwareapp.controller;
 
 import hr.tvz.Bilandzija.hardwareapp.command.HardwareCommand;
 import hr.tvz.Bilandzija.hardwareapp.model.dto.HardwareDTO;
-import hr.tvz.Bilandzija.hardwareapp.model.enums.TypeOfHardware;
 import hr.tvz.Bilandzija.hardwareapp.service.interfaces.HardwareService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,6 +31,7 @@ public class HardwareController {
         return hardwareService.findByCode(code);
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping
     public ResponseEntity<HardwareDTO> save(@Valid @RequestBody final HardwareCommand command){
         return hardwareService.save(command)
@@ -46,12 +47,14 @@ public class HardwareController {
                 );
     }
 
+    @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{code}")
     public void delete(@PathVariable Integer code){
         hardwareService.deleteByCode(code);
     }
 
+    @Secured("ROLE_ADMIN")
     @PutMapping("/{code}")
     public ResponseEntity<HardwareDTO> update(@PathVariable Integer code, @Valid @RequestBody final HardwareCommand updateHardwareCommand){
         return hardwareService.update(code, updateHardwareCommand)
@@ -59,10 +62,5 @@ public class HardwareController {
                 .orElseGet(
                         () -> ResponseEntity.notFound().build()
                 );
-    }
-
-    @GetMapping("/types")
-    public Enum<TypeOfHardware>[] HardwareTypes(){
-        return TypeOfHardware.values();
     }
 }

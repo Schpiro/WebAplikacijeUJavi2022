@@ -28,7 +28,7 @@ create table if not exists user
 create table if not exists authority
 (
     id             identity,
-    authority_name varchar(10) not null
+    authority_name nvarchar not null
 );
 
 create table if not exists user_authority
